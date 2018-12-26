@@ -1,0 +1,19 @@
+version: "3.2"
+
+services:
+  postgres:
+    build: .
+    image: postgres:latest
+    restart: always
+    container_name: "postgres"
+    user: "postgres"
+    volumes:
+      - ./data:/var/lib/postgresql/data
+      - ./conf/postgresql.conf:/var/lib/postgresql/data/postgresql.conf
+      - ./conf/pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
